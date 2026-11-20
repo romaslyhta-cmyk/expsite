@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<!-- 1.	На сторінці знаходиться набір полів для введення даних про п'ятьох 
+співробітників ‐ прізвища та дата прийому на роботу. Розрахувати та вивести 
+користувачеві середній стаж роботи на поточний час, у вигляді цілого числа років. -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>counter strike 2</title>
+    <style>
+        body{
+            background: linear-gradient(90deg, #550782, #895f04);
+            font-family: Arial, Helvetica, sans-serif;
+            margin:0;
+            min-width: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            user-select: none;
+            gap: 5px;
+        }
+        h1{
+            font-size: 30px;
+            margin-top: 200px;
+            opacity: 0.8;
+        }
+        input{
+            font-size: 15px;   
+            font-weight: bold; 
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 6px 0 #5507829d;
+            color: #550782;
+            background: white;
+            padding: 20px 50px;
+            transition: 0.1s;
+        }
+
+        button{
+            font-size: 20px;   
+            font-weight: bold; 
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 6px 0 #5507829d;
+            color: #550782;
+            background: white;
+            padding: 20px 50px;
+            transition: 0.1s;
+        }
+        button:hover{
+            background: #bdbdbd;
+
+        }
+        button:active{
+            transform: translateY(5px);
+            box-shadow: 0 1px 0 #5507829d;
+        }
+        p{
+            font-size: 30px;
+            margin: 10px 0 30px;
+
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Введіть прізвище та дату прийому</h1>
+    <div><input id="n1" placeholder = "Прізвище"> <input id="d1" type = "date"> </div>
+    <div><input id="n2" placeholder = "Прізвище"> <input id="d2" type = "date"> </div>
+    <div><input id="n3" placeholder = "Прізвище"> <input id="d3" type = "date"> </div>
+    <div><input id="n4" placeholder = "Прізвище"> <input id="d4" type = "date"> </div>
+    <div><input id="n5" placeholder = "Прізвище"> <input id="d5" type = "date"> </div>
+    <button onclick="counter()"> Обрахувати </button>
+    <p id="temp"></p>
+        
+    <script>
+        function counter(){
+            var suma = 0;
+            var today = new Date();
+            for(var i = 1; i <= 5; i++){
+                var variable = document.getElementById("d"+i).value;
+                if(variable == ""){
+                    document.getElementById("temp").textContent = "Заповніть усі дати!";
+                    return;
+                }
+                var date = new Date(variable);
+                var years = today.getFullYear()- date.getFullYear();
+                if(today.getMonth() < date.getMonth() || (today.getMonth() == date.getMonth() && today.getDate() < date.getDate())){
+                    years = years - 1;
+                }
+                suma = suma + years;
+            }
+            document.getElementById("temp").textContent = Math.floor(suma/5);
+        }
+    </script>
+</body>
+</html>
